@@ -1,0 +1,106 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "System Admin",
+      "password": "123456789",
+      "role": "Admin",
+      "email": "admin@example.com"
+    },
+    {
+      "id": 2,
+      "username": "Planner Team User",
+      "password": "12345678910",
+      "role": "Planner",
+      "email": "planner@example.com"
+    },
+    {
+      "id": 3,
+      "username": "Supply Vendor Team User",
+      "password": "12345678911",
+      "role": "Vendor",
+      "email": "vendor@example.com"
+    },
+    {
+      "id": 4,
+      "username": "Project Contractor Team User",
+      "password": "12345678912",
+      "role": "Contractor",
+      "email": "vinh.dang23@student.passerellesnumeriques.org"
+    }
+  ],
+  "contracts": [
+    {
+      "id": 3,
+      "supplyVendorId": 3,
+      "startDate": "2023-05-01",
+      "endDate": "2023-12-31",
+      "contractAmount": 1000
+    },
+    {
+      "id": 3,
+      "supplyVendorId": 3,
+      "startDate": "2023-06-01",
+      "endDate": "2023-11-30",
+      "contractAmount": 800
+    }
+  ],
+  "requestsForWithdraw": [
+    {
+      "id": 1,
+      "plannerUserId": 2,
+      "supplyVendorId": 3,
+      "quantity": 50,
+      "projectContractorUserId": 4,
+      "status": "New"
+    },
+    {
+      "id": 2,
+      "plannerUserId": 2,
+      "supplyVendorId": 3,
+      "quantity": 30,
+      "projectContractorUserId": 4,
+      "status": "Collected"
+    },
+    {
+      "id": 3,
+      "plannerUserId": 2,
+      "supplyVendorId": 3,
+      "quantity": 40,
+      "projectContractorUserId": 4,
+      "status": "Ready to Collect"
+    },
+    {
+      "plannerUserId": 2,
+      "quantity": 9,
+      "status": "New",
+      "supplyVendorId": "3",
+      "projectContractorId": "4",
+      "id": 4
+    },
+    {
+      "plannerUserId": 2,
+      "quantity": 12,
+      "status": "New",
+      "supplyVendorId": "3",
+      "projectContractorId": "4",
+      "id": 5
+    },
+    {
+      "plannerUserId": 2,
+      "quantity": 13,
+      "status": "New",
+      "supplyVendorId": "3",
+      "projectContractorId": "4",
+      "id": 6
+    },
+    {
+      "plannerUserId": 2,
+      "quantity": 14,
+      "status": "New",
+      "supplyVendorId": "3",
+      "projectContractorId": "4",
+      "id": 7
+    }
+  ]
+}
