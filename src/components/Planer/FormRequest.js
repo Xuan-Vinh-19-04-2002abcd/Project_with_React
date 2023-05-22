@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const CableDrumRequest = ({ vendors, projectContractors }) => {
   const [cableDrumRequest, setCableDrumRequest] = useState({
-    plannerUserId: 2,
+    plannerUserId: '',
     quantity: 0,
     status: 'New',
     supplyVendorId: '',
@@ -12,6 +12,13 @@ const CableDrumRequest = ({ vendors, projectContractors }) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     // Gọi API để lấy thông tin người dùng
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (loggedInUser) {
+      setCableDrumRequest((prevRequest) => ({
+        ...prevRequest,
+        plannerUserId: loggedInUser.id,
+      }));
+    }
     const fetchUsers = async () => {
       try {
         const response = await axios.get('http://localhost:3000/users');
@@ -25,25 +32,26 @@ const CableDrumRequest = ({ vendors, projectContractors }) => {
   }, []);
   
   const handleCableDrumRequest = async () => {
-    try {
-      // const response = await axios.post('http://localhost:3000/requestsForWithdraw', cableDrumRequest);
-      // console.log('Cable Drum Request created:', response.data);
+    // try {
+    //   // const response = await axios.post('http://localhost:3000/requestsForWithdraw', cableDrumRequest);
+    //   // console.log('Cable Drum Request created:', response.data);
 
-      // Lấy thông tin người dùng và gửi email
-      const projectContractorId = cableDrumRequest.projectContractorId;
+    //   // Lấy thông tin người dùng và gửi email
+    //   const projectContractorId = cableDrumRequest.projectContractorId;
      
-      const projectContractor = users.find(user => user.id == projectContractorId);
-      console.log(projectContractor)
-      if (projectContractor) {
-        const email = projectContractor.email;
-        const quantity = cableDrumRequest.quantity;
-        sendEmail(email, quantity);
-      } else {
-        console.error('Project Contractor not found');
-      }
-    } catch (error) {
-      console.error('Error creating Cable Drum Request:', error);
-    }
+    //   const projectContractor = users.find(user => user.id == projectContractorId);
+    //   console.log(projectContractor)
+    //   if (projectContractor) {
+    //     const email = projectContractor.email;
+    //     const quantity = cableDrumRequest.quantity;
+    //     sendEmail(email, quantity);
+    //   } else {
+    //     console.error('Project Contractor not found');
+    //   }
+    // } catch (error) {
+    //   console.error('Error creating Cable Drum Request:', error);
+    // }
+    console.log(cableDrumRequest)
   };
 
   const sendEmail = async (email, quantity) => {

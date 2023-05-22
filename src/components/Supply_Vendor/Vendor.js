@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Contractor = () => {
+const Vendor = () => {
   const [requests, setRequests] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState('');
@@ -10,7 +10,7 @@ const Contractor = () => {
   useEffect(() => {
     axios.get('http://localhost:3000/requestsForWithdraw')
       .then(response => {
-        const filteredRequests = response.data.filter(request => request.projectContractorUserId == loggedInUser.id && request.status === 'New');
+        const filteredRequests = response.data.filter(request => request.supplyVendorId  == loggedInUser.id);
         setRequests(filteredRequests);
       })
       .catch(error => console.log(error));
@@ -48,12 +48,14 @@ const Contractor = () => {
       return 'bg-blue-500 text-white';
     } else if (status === 'Collected') {
       return 'bg-red-500 text-white';
-    }
+    }else if (status === 'Ready to Collect') {
+        return 'bg-yellow-500 text-white';
+      }
     return '';
   };
 
   const getRequestStatus = (status, requestId) => {
-    const statusOptions = ['New', 'Collected'];
+    const statusOptions = ['New', 'Collected',"Ready to Collect"];
     return (
       <div className="flex justify-center">
         <select
@@ -96,7 +98,7 @@ const Contractor = () => {
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
-            <tr>
+            <tr className='bg-slate-400'>
               <th className="border border-gray-300 px-4 py-2">Request ID</th>
               <th className="border border-gray-300 px-4 py-2">Planner</th>
               <th className="border border-gray-300 px-4 py-2">Quantity</th>
@@ -125,4 +127,4 @@ const Contractor = () => {
   );
 };
 
-export default Contractor;
+export default Vendor;
