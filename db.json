@@ -68,12 +68,12 @@
       "supplyVendorId": 3,
       "quantity": 40,
       "projectContractorUserId": 4,
-      "status": "Ready to Collect"
+      "status": "Collected"
     },
     {
       "plannerUserId": 2,
       "quantity": 9,
-      "status": "New",
+      "status": "Collected",
       "supplyVendorId": "3",
       "projectContractorId": "4",
       "id": 4
@@ -81,7 +81,7 @@
     {
       "plannerUserId": 2,
       "quantity": 12,
-      "status": "New",
+      "status": "Collected",
       "supplyVendorId": "3",
       "projectContractorId": "4",
       "id": 5
@@ -89,7 +89,7 @@
     {
       "plannerUserId": 2,
       "quantity": 13,
-      "status": "New",
+      "status": "Ready to Collect",
       "supplyVendorId": "3",
       "projectContractorId": "4",
       "id": 6
@@ -97,7 +97,7 @@
     {
       "plannerUserId": 2,
       "quantity": 14,
-      "status": "New",
+      "status": "Ready to Collect",
       "supplyVendorId": "3",
       "projectContractorId": "4",
       "id": 7
