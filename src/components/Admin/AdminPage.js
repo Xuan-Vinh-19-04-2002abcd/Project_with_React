@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import API_URL from '../../Config/Config';
 const AdminPage = () => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/users')
+      .get(`${API_URL}/users`)
       .then((response) => {
         setUsers(response.data);
       })

@@ -1,27 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import API_URL from '../../Config/Config';
 const Contractor = () => {
   const [requests, setRequests] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [contracts, setContracts] = useState([]);
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+  const [contract,setContract] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:3000/requestsForWithdraw')
+    axios.get(`${API_URL}/requestsForWithdraw`)
       .then(response => {
         const filteredRequests = response.data.filter(request => request.projectContractorUserId == loggedInUser.id && request.status === 'New');
         setRequests(filteredRequests);
       })
       .catch(error => console.log(error));
 
-    axios.get('http://localhost:3000/users')
+    axios.get(`${API_URL}/users`)
       .then(response => setUsers(response.data))
+      .catch(error => console.log(error));
+    axios.get(`${API_URL}/contracts`) // Fetch contracts data
+      .then(response => setContracts(response.data))
       .catch(error => console.log(error));
   }, [loggedInUser.id]);
 
+
   const updateRequestStatus = (requestId, newStatus) => {
-    axios.patch(`http://localhost:3000/requestsForWithdraw/${requestId}`, { status: newStatus })
+    axios.patch(`${API_URL}/requestsForWithdraw/${requestId}`, { status: newStatus })
       .then(response => {
         const updatedRequest = response.data;
         setRequests(prevRequests => {
@@ -33,6 +39,28 @@ const Contractor = () => {
           });
           return updatedRequests;
         });
+
+        if (newStatus === 'Collected') {
+          const superVendorId = updatedRequest.supplyVendorId;
+
+
+          const updatedContract = contracts.find(contract => contract.supplyVendorId == superVendorId);
+          if (updatedContract) {
+            updatedContract.contractAmount -= updatedRequest.quantity;
+            axios.patch(`${API_URL}/contracts/${updatedContract.id}`, { contractAmount: updatedContract.contractAmount })
+            .then(response => {
+              console.log("Ok");
+              alert("Bạn đã hoàn thành request");
+            })
+            .catch(error => {
+              console.log(error);
+              // Xử lý lỗi nếu cần thiết
+            });
+          } else {
+            console.log("Contract not found");
+          }
+          
+        }
       })
       .catch(error => console.log(error));
   };
@@ -102,7 +130,7 @@ const Contractor = () => {
               <th className="border border-gray-300 px-4 py-2">Quantity</th>
               <th className="border border-gray-300 px-4 py-2">Supper Vendor</th>
               <th className="border border-gray-300 px-4 py-2">Status</th>
-              
+
             </tr>
           </thead>
           <tbody>
@@ -115,7 +143,7 @@ const Contractor = () => {
                 <td className="border border-gray-300 px-4 py-2">
                   {getRequestStatus(request.status, request.id)}
                 </td>
-               
+
               </tr>
             ))}
           </tbody>

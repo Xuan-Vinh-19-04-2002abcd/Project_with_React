@@ -56,14 +56,14 @@
       "supplyVendorId": 4,
       "startDate": "2023-05-01",
       "endDate": "2023-12-31",
-      "contractAmount": 1000
+      "contractAmount": 950
     },
     {
-      "id": 3,
+      "id": 4,
       "supplyVendorId": 5,
       "startDate": "2023-06-01",
       "endDate": "2023-11-30",
-      "contractAmount": 800
+      "contractAmount": 770
     }
   ],
   "requestsForWithdraw": [
@@ -73,7 +73,7 @@
       "supplyVendorId": 4,
       "quantity": 50,
       "projectContractorUserId": 6,
-      "status": "New"
+      "status": "Collected"
     },
     {
       "id": 3,
@@ -81,7 +81,7 @@
       "supplyVendorId": 5,
       "quantity": 30,
       "projectContractorUserId": 6,
-      "status": "New"
+      "status": "Ready to Collect"
     },
     {
       "id": 3,

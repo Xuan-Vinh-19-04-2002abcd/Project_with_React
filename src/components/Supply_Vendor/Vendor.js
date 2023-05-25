@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import API_URL from '../../Config/Config';
 const Vendor = () => {
   const [requests, setRequests] = useState([]);
   const [users, setUsers] = useState([]);
@@ -8,20 +8,20 @@ const Vendor = () => {
   const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
   useEffect(() => {
-    axios.get('http://localhost:3000/requestsForWithdraw')
+    axios.get(`${API_URL}/requestsForWithdraw`)
       .then(response => {
         const filteredRequests = response.data.filter(request => request.supplyVendorId  == loggedInUser.id);
         setRequests(filteredRequests);
       })
       .catch(error => console.log(error));
 
-    axios.get('http://localhost:3000/users')
+    axios.get(`${API_URL}/users`)
       .then(response => setUsers(response.data))
       .catch(error => console.log(error));
   }, [loggedInUser.id]);
 
   const updateRequestStatus = (requestId, newStatus) => {
-    axios.patch(`http://localhost:3000/requestsForWithdraw/${requestId}`, { status: newStatus })
+    axios.patch(`${API_URL}/requestsForWithdraw/${requestId}`, { status: newStatus })
       .then(response => {
         const updatedRequest = response.data;
         setRequests(prevRequests => {

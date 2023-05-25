@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CableDrumRequest from './FormRequest';
-
+import API_URL from '../../Config/Config';
 const Planner = () => {
   const [contracts, setContracts] = useState([]);
   const [vendors, setVendors] = useState([]);
@@ -11,7 +11,7 @@ const Planner = () => {
   useEffect(() => {
     const fetchContracts = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/contracts');
+        const response = await axios.get(`${API_URL}/contracts`);
         setContracts(response.data);
       } catch (error) {
         console.error('Error fetching contracts:', error);
@@ -20,7 +20,7 @@ const Planner = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/users');
+        const response = await axios.get(`${API_URL}/users`);
         const filteredVendors = response.data.filter((user) => user.role === 'Vendor');
         setVendors(filteredVendors);
         const filteredProjectContractors = response.data.filter((user) => user.role === 'Contractor');
