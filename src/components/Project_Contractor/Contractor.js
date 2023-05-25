@@ -12,7 +12,9 @@ const Contractor = () => {
   useEffect(() => {
     axios.get(`${API_URL}/requestsForWithdraw`)
       .then(response => {
-        const filteredRequests = response.data.filter(request => request.projectContractorUserId == loggedInUser.id && request.status === 'New');
+        console.log(response.data)
+        const filteredRequests = response.data.filter(request => request.projectContractorUserId == loggedInUser.id && request.status == 'New');
+        console.log(filteredRequests)
         setRequests(filteredRequests);
       })
       .catch(error => console.log(error));

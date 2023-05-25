@@ -72,8 +72,8 @@
       "plannerUserId": 2,
       "supplyVendorId": 4,
       "quantity": 50,
-      "projectContractorUserId": 6,
-      "status": "Collected"
+      "projectContractorUserId": "7",
+      "status": "New"
     },
     {
       "id": 3,
@@ -84,7 +84,7 @@
       "status": "Ready to Collect"
     },
     {
-      "id": 3,
+      "id": 2,
       "plannerUserId": 2,
       "supplyVendorId": 4,
       "quantity": 40,
@@ -96,7 +96,7 @@
       "quantity": 9,
       "status": "Collected",
       "supplyVendorId": 5,
-      "projectContractorId": "7",
+      "projectContractorUserId": "7",
       "id": 4
     },
     {
@@ -104,7 +104,7 @@
       "quantity": 12,
       "status": "Collected",
       "supplyVendorId": 5,
-      "projectContractorId": "7",
+      "projectContractorUserId": "7",
       "id": 5
     },
     {
@@ -112,16 +112,32 @@
       "quantity": 13,
       "status": "Ready to Collect",
       "supplyVendorId": 5,
-      "projectContractorId": "7",
+      "projectContractorUserId": "7",
       "id": 6
     },
     {
       "plannerUserId": 3,
       "quantity": 14,
-      "status": "Ready to Collect",
+      "status": "New",
       "supplyVendorId": 5,
-      "projectContractorId": "7",
+      "projectContractorUserId": "7",
       "id": 7
+    },
+    {
+      "plannerUserId": 3,
+      "quantity": 15,
+      "status": "New",
+      "supplyVendorId": "4",
+      "projectContractorUserId": "7",
+      "id": 8
+    },
+    {
+      "plannerUserId": 2,
+      "supplyVendorId": "4",
+      "quantity": 18,
+      "projectContractorUserId": "7",
+      "status": "New",
+      "id": 9
     }
   ]
 }

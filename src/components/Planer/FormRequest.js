@@ -3,20 +3,21 @@ import axios from 'axios';
 import API_URL from '../../Config/Config';
 const CableDrumRequest = ({ vendors, projectContractors }) => {
   const [cableDrumRequest, setCableDrumRequest] = useState({
-    plannerUserId: '',
-    quantity: 0,
-    status: 'New',
-    supplyVendorId: '',
-    projectContractorId: '',
+      plannerUserId: '',
+      supplyVendorId: '',
+      quantity: 0,
+      projectContractorUserId: '',
+      status: 'New',
   });
   const [users, setUsers] = useState([]);
   const resetForm = () => {
     setCableDrumRequest({
       plannerUserId: '',
-      quantity: 0,
-      status: 'New',
       supplyVendorId: '',
+      quantity: 0,
       projectContractorId: '',
+      status: 'New',  
+      
     });
   };
   useEffect(() => {
