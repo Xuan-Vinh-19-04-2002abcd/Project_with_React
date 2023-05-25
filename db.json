@@ -138,6 +138,14 @@
       "projectContractorUserId": "7",
       "status": "New",
       "id": 9
+    },
+    {
+      "plannerUserId": 2,
+      "supplyVendorId": "4",
+      "quantity": 12,
+      "projectContractorUserId": "7",
+      "status": "New",
+      "id": 10
     }
   ]
 }

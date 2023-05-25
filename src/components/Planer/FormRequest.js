@@ -15,7 +15,7 @@ const CableDrumRequest = ({ vendors, projectContractors }) => {
       plannerUserId: '',
       supplyVendorId: '',
       quantity: 0,
-      projectContractorId: '',
+      projectContractorUserId: '',
       status: 'New',  
       
     });
@@ -124,11 +124,11 @@ const CableDrumRequest = ({ vendors, projectContractors }) => {
         
         <select
           id="projectContractor"
-          value={cableDrumRequest.projectContractorId}
+          value={cableDrumRequest.projectContractorUserId}
           onChange={(e) =>
             setCableDrumRequest({
               ...cableDrumRequest,
-              projectContractorId: e.target.value,
+              projectContractorUserId: e.target.value,
             })
           }
           className="border border-gray-300 rounded px-4 py-2 flex-grow md:w-72"
