@@ -69,7 +69,7 @@ const CableDrumRequest = ({ vendors, projectContractors }) => {
 
   const sendEmail = async (email, quantity) => {
     try {
-      const response = await axios.post('http://localhost:3004/send-email', {
+      const response = await axios.post(`${API_URL}/send-email`, {
         email,
         quantity,
       });
