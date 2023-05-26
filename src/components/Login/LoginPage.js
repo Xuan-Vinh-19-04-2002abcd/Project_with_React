@@ -150,7 +150,7 @@ const LoginForm = () => {
         <div className="flex items-center justify-center">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-10 rounded focus:outline-none focus:shadow-outline"
           >
             Login
           </button>

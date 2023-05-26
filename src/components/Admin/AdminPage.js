@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import API_URL from '../../Config/Config';
+import LogoutButton from '../Button/Signup';
 const AdminPage = () => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,8 +34,12 @@ const AdminPage = () => {
         </div>
       </div>
       <div className='w-full lg:w-5/6 px-4'>
+          <div className='mt-10 flex justify-end'>
+          <LogoutButton/>
+          </div>
         <div className='md:mt-32 mt-4'>
-          <div className='mb-4 flex justify-end'>
+          <div className='mb-4 flex justify-end '>
+            
             <input
               type='text'
               placeholder='Tìm kiếm...'
@@ -42,6 +47,7 @@ const AdminPage = () => {
               onChange={handleSearch}
               className='border border-gray-300 rounded-md py-2 px-4 w-full lg:w-3/12'
             />
+           
           </div>
           <div className='w-full border-t-2 border-gray-500'></div>
         </div>
@@ -51,7 +57,7 @@ const AdminPage = () => {
               <thead className='bg-gray-200 text-gray-700'>
                 <tr>
                   <th className='py-2 px-4'>STT</th>
-                  <th className='py-2 px-4'>Tên</th>
+                  <th className='py-2 px-4'>Name</th>
                   <th className='py-2 px-4'>Role</th>
                 </tr>
               </thead>

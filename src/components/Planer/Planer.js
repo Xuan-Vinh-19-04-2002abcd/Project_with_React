@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CableDrumRequest from './FormRequest';
 import API_URL from '../../Config/Config';
+import LogoutButton from '../Button/Signup';
+
 const Planner = () => {
   const [contracts, setContracts] = useState([]);
   const [vendors, setVendors] = useState([]);
@@ -54,29 +56,34 @@ const Planner = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8  h-screen bg-[url('')]">
-      <div className="w-full   mb-8">
+    <div className="container mx-auto px-4 py-8 min-h-screen bg-[url('')]">
+      <div className="flex justify-end">
+        <LogoutButton />
+      </div>
+      <div className="w-full mb-8">
         <h2 className="text-2xl font-bold mb-4 text-center">Contracts</h2>
-        <table className="w-full border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200">
-              <th className="py-2 px-4 border-b">Start Date</th>
-              <th className="py-2 px-4 border-b">End Date</th>
-              <th className="py-2 px-4 border-b">Amount of Cable Drum</th>
-              <th className="py-2 px-4 border-b">Vendor</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contracts.map((contract) => (
-              <tr key={contract.id}>
-                <td className="py-2 px-4 border text-center">{contract.startDate}</td>
-                <td className="py-2 px-4 border text-center">{contract.endDate}</td>
-                <td className="py-2 px-4 border text-center">{contract.contractAmount}</td>
-                <td className="py-2 px-4 border text-center">{contract.vendor}</td>
+        <div className="overflow-x-auto">
+          <table className="w-full border border-gray-300">
+            <thead>
+              <tr className="bg-gray-200">
+                <th className="py-2 px-4 border-b">Start Date</th>
+                <th className="py-2 px-4 border-b">End Date</th>
+                <th className="py-2 px-4 border-b">Amount of Cable Drum</th>
+                <th className="py-2 px-4 border-b">Vendor</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {contracts.map((contract) => (
+                <tr key={contract.id}>
+                  <td className="py-2 px-4 border text-center">{contract.startDate}</td>
+                  <td className="py-2 px-4 border text-center">{contract.endDate}</td>
+                  <td className="py-2 px-4 border text-center">{contract.contractAmount}</td>
+                  <td className="py-2 px-4 border text-center">{contract.vendor}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {showCableDrumRequest && (

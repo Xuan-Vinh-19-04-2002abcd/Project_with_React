@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_URL from '../../Config/Config';
+import LogoutButton from '../Button/Signup';
 const Vendor = () => {
   const [requests, setRequests] = useState([]);
   const [users, setUsers] = useState([]);
@@ -93,8 +94,11 @@ const Vendor = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Contractor Requests</h1>
+    <div className="container mx-auto p-4 mt-8">
+      <div className='flex justify-end mb-4'>
+        <LogoutButton/>
+      </div>
+      <h1 className="text-2xl font-bold mb-4 text-center">All Your Requests</h1>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse">
           <thead>
