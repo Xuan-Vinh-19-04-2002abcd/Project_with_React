@@ -9,7 +9,7 @@ const Planner = () => {
   const [vendors, setVendors] = useState([]);
   const [projectContractors, setProjectContractors] = useState([]);
   const [showCableDrumRequest, setShowCableDrumRequest] = useState(false);
-
+  const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
   useEffect(() => {
     const fetchContracts = async () => {
       try {
@@ -57,8 +57,9 @@ const Planner = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 min-h-screen bg-[url('')]">
-      <div className="flex justify-end">
-        <LogoutButton />
+           <div className='flex justify-between mb-4'>
+      <p className='px-2 py-2 rounded-2xl bg-orange-600 font-bold '><span className='text-xl'>Hi</span> {loggedInUser.username}</p>
+        <LogoutButton/>
       </div>
       <div className="w-full mb-8">
         <h2 className="text-2xl font-bold mb-4 text-center">Contracts</h2>
@@ -108,7 +109,7 @@ const Planner = () => {
               </svg>
             </button>
           
-            <CableDrumRequest vendors={vendors} projectContractors={projectContractors} />
+            <CableDrumRequest vendors={vendors} projectContractors={projectContractors} handleCreateClose={handleCloseModal} />
           </div>
         </div>
       )}

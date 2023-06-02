@@ -48,6 +48,13 @@
       "password": "12345678916",
       "role": "Contractor",
       "email": "vinh.dang23@student.passerellesnumeriques.org"
+    },
+    {
+      "username": "Đặng Xuân Nguyên",
+      "password": "12345678",
+      "email": "nguyen.dang@gmail.com",
+      "role": "Planner",
+      "id": 8
     }
   ],
   "contracts": [
@@ -56,14 +63,14 @@
       "supplyVendorId": 4,
       "startDate": "2023-05-01",
       "endDate": "2023-12-31",
-      "contractAmount": 950
+      "contractAmount": 938
     },
     {
       "id": 4,
       "supplyVendorId": 5,
       "startDate": "2023-06-01",
       "endDate": "2023-11-30",
-      "contractAmount": 770
+      "contractAmount": 761
     }
   ],
   "requestsForWithdraw": [
@@ -144,8 +151,16 @@
       "supplyVendorId": "4",
       "quantity": 12,
       "projectContractorUserId": "7",
-      "status": "New",
+      "status": "Ready to Collect",
       "id": 10
+    },
+    {
+      "plannerUserId": 3,
+      "supplyVendorId": "4",
+      "quantity": 12,
+      "projectContractorUserId": "7",
+      "status": "New",
+      "id": 11
     }
   ]
 }

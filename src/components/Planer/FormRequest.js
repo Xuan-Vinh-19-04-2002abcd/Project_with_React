@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import API_URL from '../../Config/Config';
-const CableDrumRequest = ({ vendors, projectContractors }) => {
+const CableDrumRequest = ({ vendors, projectContractors,handleCreateClose }) => {
   const [cableDrumRequest, setCableDrumRequest] = useState({
       plannerUserId: '',
       supplyVendorId: '',
@@ -45,9 +45,10 @@ const CableDrumRequest = ({ vendors, projectContractors }) => {
     try {
       const response = await axios.post(`${API_URL}/requestsForWithdraw`, cableDrumRequest);
       console.log('Cable Drum Request created:', response.data);
+      handleCreateClose();
 
-      // Lấy thông tin người dùng và gửi email
-      const projectContractorId = cableDrumRequest.projectContractorId;
+      // Get Information and send Email
+      const projectContractorId = cableDrumRequest.projectContractorUserId;
      
       const projectContractor = users.find(user => user.id == projectContractorId);
       console.log(projectContractor)
@@ -65,7 +66,7 @@ const CableDrumRequest = ({ vendors, projectContractors }) => {
     } catch (error) {
       console.error('Error creating Cable Drum Request:', error);
     } 
-   
+    
   };
 
   const sendEmail = async (email, quantity) => {
@@ -138,7 +139,7 @@ const CableDrumRequest = ({ vendors, projectContractors }) => {
             <option key={projectContractor.id} value={projectContractor.id}>
               {projectContractor.username}
             </option>
-          ))}
+          ))} 
         </select>
       </div>
       <button

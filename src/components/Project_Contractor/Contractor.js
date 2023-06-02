@@ -14,7 +14,7 @@ const Contractor = () => {
     axios.get(`${API_URL}/requestsForWithdraw`)
       .then(response => {
         console.log(response.data)
-        const filteredRequests = response.data.filter(request => request.projectContractorUserId == loggedInUser.id && request.status == 'New');
+        const filteredRequests = response.data.filter(request => request.projectContractorUserId == loggedInUser.id);
         console.log(filteredRequests)
         setRequests(filteredRequests);
       })
@@ -79,25 +79,35 @@ const Contractor = () => {
       return 'bg-blue-500 text-white';
     } else if (status === 'Collected') {
       return 'bg-red-500 text-white';
+    }else if (status === 'Ready to Collect') {
+      return 'bg-green-500 text-white';
     }
     return '';
   };
-
   const getRequestStatus = (status, requestId) => {
-    const statusOptions = ['New', 'Collected'];
+    const statusOptions = [ 'Collected', 'Ready to Collect'];
+    if (status === 'New') {
+      return (
+        <div className="flex justify-center">
+        <button className='border border-stone-500 py-1 px-14 bg-blue-400 cursor-default rounded-md'>
+        New
+        </button>
+      </div>
+      );
+    }
     return (
       <div className="flex justify-center">
         <select
           value={status}
-          className="bg-transparent border-none outline-none"
+          className="appearance-none bg-black text-white py-2 px-3 pr-2 rounded leading-tight cursor-pointer text-center "
           onChange={(event) => handleStatusChange(event, requestId)}
-          style={{ backgroundColor: getRequestStatusClasses(status).split(' ')[0].substring(3) }}
         >
           {statusOptions.map(option => (
             <option
+              className='text-white'
               key={option}
               value={option}
-              style={{ backgroundColor: getRequestStatusClasses(option).split(' ')[0].substring(3) }}
+              
             >
               {option}
             </option>
@@ -106,6 +116,7 @@ const Contractor = () => {
       </div>
     );
   };
+  
 
   const getUserName = (userId) => {
     if (userId === loggedInUser.id) {
@@ -123,7 +134,8 @@ const Contractor = () => {
 
   return (
     <div className="container mx-auto p-4 mt-18">
-      <div className='flex justify-end mb-8'>
+       <div className='flex justify-between mb-4'>
+      <p className='px-2 py-2 rounded-2xl bg-orange-600 font-bold text-white '><span className='text-xl text-black'>Hi</span> {loggedInUser.username}</p>
         <LogoutButton/>
       </div>
       <h1 className="text-2xl font-bold mb-4 text-center">Contractor Requests</h1>
