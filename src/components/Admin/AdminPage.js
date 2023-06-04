@@ -7,6 +7,7 @@ const AdminPage = () => {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [showRoleForm, setShowRoleForm] = useState(false);
+  const [roles, setRoles] = useState([]);
   useEffect(() => {
     axios
       .get(`${API_URL}/users`)
@@ -17,13 +18,16 @@ const AdminPage = () => {
         console.error(error);
       });
   }, []);
-
+  const handleCreateUserSuccess = (newUser) => {
+    setUsers((prevUsers) => [...prevUsers, newUser]);
+  };
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
   const filteredUsers = users.filter((user) =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase())
+    user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.role.toLowerCase().includes(searchTerm.toLowerCase())
   );
   const handleCreateRequest = () => {
     setShowRoleForm(true);
@@ -109,10 +113,10 @@ const AdminPage = () => {
               </svg>
             </button>
           
-            <CreateRoleForm  handleCreateClose={handleCloseModal}/>
+            <CreateRoleForm  handleCreateClose={handleCloseModal} handleCreateSuccess={handleCreateUserSuccess}/>
           </div>
         </div>
-      )}
+      )}  
       
     </div>
     

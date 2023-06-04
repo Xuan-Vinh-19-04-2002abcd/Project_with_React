@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import API_URL from '../../Config/Config';
 
-const CreateRoleForm = ({ handleCreateClose }) => {
+const CreateRoleForm = ({ handleCreateClose,handleCreateSuccess }) => {
   const [role, setRole] = useState({
     username: '',
     password: '',
@@ -60,6 +60,7 @@ const CreateRoleForm = ({ handleCreateClose }) => {
       // Validation passed, continue with API call
       const response = await axios.post(`${API_URL}/users`, role);
       console.log('Role created:', response.data);
+      handleCreateSuccess(response.data);
       alert('Role created successfully');
       resetForm();
       console.log(role);
