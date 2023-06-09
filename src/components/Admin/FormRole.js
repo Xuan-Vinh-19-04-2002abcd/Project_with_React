@@ -61,7 +61,6 @@ const CreateRoleForm = ({ handleCreateClose,handleCreateSuccess }) => {
       const response = await axios.post(`${API_URL}/users`, role);
       console.log('Role created:', response.data);
       handleCreateSuccess(response.data);
-      alert('Role created successfully');
       resetForm();
       console.log(role);
       handleCreateClose();

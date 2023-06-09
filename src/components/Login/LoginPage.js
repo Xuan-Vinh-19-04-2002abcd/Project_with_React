@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import API_URL from '../../Config/Config';
 
 const LoginForm = () => {
-  const [userType, setUserType] = useState('Admin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
   const navigate = useNavigate();
-
-  const handleUserTypeChange = (event) => {
-    setUserType(event.target.value);
-  };
+  useEffect(() => {
+    // Kiểm tra xem người dùng đã đăng nhập hay chưa
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    if (loggedInUser) {
+      // Đã đăng nhập, chuyển hướng đến trang thích hợp dựa trên vai trò của người dùng
+      const user = JSON.parse(loggedInUser);
+      switch (user.role) {
+        case 'Admin':
+          navigate('/admin');
+          break;
+        case 'Vendor':
+          navigate('/vendor');
+          break;
+        case 'Planner':
+          navigate('/planner');
+          break;
+        case 'Contractor':
+          navigate('/contractor');
+          break;
+        default:
+          break;
+      }
+    }
+  }, []);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -56,7 +75,6 @@ const LoginForm = () => {
       const users = await getUsers();
       const user = users.find(
         (user) =>
-          user.role === userType &&
           user.email === email &&
           user.password === password
       );
@@ -96,25 +114,6 @@ const LoginForm = () => {
         onSubmit={handleLogin}
         className="max-w-md mx-auto bg-gray-900 bg-opacity-80 rounded-lg p-8"
       >
-        <div className="mb-4">
-          <label
-            htmlFor="user-type"
-            className="block text-white text-lg mb-2 font-bold"
-          >
-            Role
-          </label>
-          <select
-            id="user-type"
-            value={userType}
-            onChange={handleUserTypeChange}
-            className="block w-full py-2 px-4 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-          >
-            <option value="Admin">Admin</option>
-            <option value="Vendor">Vendor</option>
-            <option value="Planner">Planner</option>
-            <option value="Contractor">Contractor</option>
-          </select>
-        </div>
         <div className="mb-4">
           <label
             htmlFor="email"
